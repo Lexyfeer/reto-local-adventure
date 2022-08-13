@@ -6,18 +6,30 @@
   background-color: #dfe4ea;
 }
 
+.mainContainer {
+  text-align: center;
+  background-color: white;
+  width: 70%;
+  margin: auto;
+  padding-top: 2rem;
+}
+
 .nav {
   width: 100%;
   padding: .8rem 2rem .5rem 2rem;
   background-color: white;
-  border: 1px orangered solid;
+  border-bottom: transparent;
+  box-shadow: 0 5px 10px #888888;
+  position: sticky;
 }
 
 .circle {
   display: inline-flex;
   width: 80px;
   height: 80px;
-  margin: 2rem 2rem 0 0 ;
+  position: relative;
+  top: 10rem;
+  left: 5rem;
   background-color: #ff7f50;
   align-items: center;
   border-radius: 50%;
@@ -27,7 +39,6 @@
 
 .container1 {
   display: flex;
-  border: solid 1px black;
   justify-content: center;
 }
 
@@ -36,10 +47,8 @@
 }
 
 .formContainer {
-  border: solid 1px red;
   width: 40%;
   padding: 0 0 4rem 2rem;
-  background-color: whitesmoke;
 }
 
 .input {
@@ -50,14 +59,30 @@
   color: #222;
 }
 
-.input::placeholder {
+.input::placeholder,
+.textArea::placeholder {
   color: #a4b0be;
 }
 
 .input:hover,
-.inputBold:hover {
-  border-style: dashed ;
+.inputBold:hover,
+.inputDrag:hover,
+.labelDrag:hover,
+.textArea:hover,
+.labelCheck:hover {
+  border-style: dashed;
   border-color: #ff7f50;
+}
+
+.input:focus,
+.inputBold:focus,
+.inputDrag:focus,
+.labelDrag:focus,
+.textArea:focus,
+.labelCheck:focus {
+  outline: dashed;
+  outline-color: #ff7f50;
+  border: none;
 }
 
 .inputBold {
@@ -75,11 +100,11 @@
 }
 
 .dragContainer {
-  border: solid 1px blue;
   display: flex;
+  flex-direction: column;
   width: 40%;
-  justify-content: center;
-  background-color: whitesmoke;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .drag {
@@ -90,6 +115,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform .4s;
+}
+
+.drag:hover {
+  transform: scale(0.9);
 }
 
 .drag label {
@@ -101,10 +131,33 @@
   font-weight: bold;
 }
 
+.formText {
+  width: 250px;
+}
+
+.containerText {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputDrag {
+  background-color: transparent;
+  border: none;
+  width: 50%;
+  padding: .2rem 0 .2rem .2rem;
+  color: #222;
+  text-align: end;
+}
+
+.labelDrag {
+  width: 50%;
+  text-align: end;
+  font-weight: bold;
+}
+
 .table {
   width: 85%;
   margin: auto;
-  background-color: white;
 }
 
 .btnPlus {
@@ -128,6 +181,72 @@
   height: 30px;
   border-radius: 100%;
   border: none;
+}
+
+.container3 {
+  display: flex;
+  justify-content: space-evenly;
+  width: 85%;
+  margin: auto;
+  padding: 2rem 0;
+}
+
+.containerTextArea {
+  text-align: center;
+  border: solid 1px;
+  border-radius: 20px;
+  width: 400px;
+  padding: 1rem;
+}
+
+.textArea {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  text-align: center;
+  color: #222;
+}
+
+.labelCheck {
+  width: 50%;
+  text-align: start;
+  font-weight: bold;
+}
+
+.pFinal {
+  color: #a4b0be;
+}
+
+.a {
+  color: #079992;
+}
+
+.a:hover {
+  color: #079992;
+  text-decoration: underline;
+}
+
+.btnDownContainer {
+  display: flex;
+  justify-content: end;
+  width: 70%;
+  margin: auto;
+  padding: 1.5rem 0 1rem 0;
+}
+
+.btnDown {
+  border: #ff6348;
+  background-color: #ff6348;
+  width: 200px;
+  padding: 1rem 0;
+  border-radius: 5px;
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.btnDown:hover {
+  opacity: .4;
+  transition: 0.3s;
 }
 
 .footer {
@@ -162,6 +281,7 @@
   .footer {
     border-color: #222;
   }
+
   .logo img {
     filter: invert(0);
   }

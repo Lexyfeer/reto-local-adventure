@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import DragDrop from '../components/DragDrop';
 import { useState } from "react";
+import Link from 'next/link';
 
 export default function Home() {
   const [rows, setRows] = useState([
@@ -19,6 +20,12 @@ export default function Home() {
     ]);
   };
 
+  const handleRemoveClick = (i) => {
+    const list = [...rows];
+    list.splice(i, 1);
+    setRows(list);
+  };
+
   return (
     <>
       <Head>
@@ -33,11 +40,12 @@ export default function Home() {
           <img src='/logoHubspot.png' alt='Logo' width={200} height={50} />
         </nav>
 
+        <div className={styles.circle}>
+          <img src='//cdn2.hubspot.net/hubfs/53/invoice%20generator/toolset.svg' width={50} height={50} />
+        </div>
+
         <div className={styles.mainContainer}>
           <div className={styles.container1}>
-            <div className={styles.circle}>
-              <img src='//cdn2.hubspot.net/hubfs/53/invoice%20generator/toolset.svg' width={50} height={50} />
-            </div>
             <div className={styles.formContainer}>
               <h1 className={styles.h1}>Invoice</h1>
               <form>
@@ -60,6 +68,22 @@ export default function Home() {
               <div className={styles.drag}>
                 <DragDrop className={styles.label} />
               </div>
+              <div className={styles.formText}>
+                <form>
+                  <div className={styles.containerText}>
+                    <label className={styles.labelDrag}>Invoince No:</label>
+                    <input className={styles.inputDrag} type='text' placeholder="####" />
+                  </div>
+                  <div className={styles.containerText}>
+                    <label className={styles.labelDrag}>Invoince Date:</label>
+                    <input className={styles.inputDrag} type='date' />
+                  </div>
+                  <div className={styles.containerText}>
+                    <label className={styles.labelDrag}>Due Date:</label>
+                    <input className={styles.inputDrag} type='date' />
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
 
@@ -77,7 +101,7 @@ export default function Home() {
                 <tbody>
                   {rows.map((row, i) => {
                     return (
-                      <tr>
+                      <tr key={i}>
                         <th scope="row">
                           <input className={styles.input} type='text' placeholder={row.id} />
                         </th>
@@ -91,7 +115,9 @@ export default function Home() {
                           <input className={styles.input} type='text' placeholder='$0.00' />
                         </td>
                         <td>
-                          <button className={styles.btnDelete}>
+                          <button className={styles.btnDelete} onClick={() => {
+                            handleRemoveClick(i);
+                          }}>
                             <img src="/delete.svg" alt="Delete" />
                           </button>
                         </td>
@@ -109,10 +135,38 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.container3}>
-            <div>
-              <p>Drag and drop</p>
+            <div className={styles.containerTextArea}>
+              <p>Notes:</p>
+              <textarea className={styles.textArea} placeholder='Any additional comments' />
+            </div>
+            <div className={styles.formText}>
+              <form>
+                <div className={styles.containerText}>
+                  <label className={styles.labelCheck}>Subtotal:</label>
+                  <input className={styles.inputDrag} type='text' defaultValue="0.00" />
+                </div>
+                <div className={styles.containerText}>
+                  <label className={styles.labelCheck}>Tax:</label>
+                  <input className={styles.inputDrag} type='text' placeholder="0 %" />
+                </div>
+                <div className={styles.containerText}>
+                  <label className={styles.labelCheck}>Discount:</label>
+                  <input className={styles.inputDrag} type='text' placeholder="0 %" />
+                </div>
+                <div className="table-group-divider">
+                  <div className={styles.containerText}>
+                    <label className={styles.labelCheck}>Total:</label>
+                    <input className={styles.inputDrag} type='text' defaultValue="0.00" />
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
+          <p className={styles.pFinal}>This invoice was created using the HubSpot <Link href='https://www.hubspot.com/invoice-template-generator'><a className={styles.a}>Invoice Template Generator</a></Link></p>
+        </div>
+
+        <div className={styles.btnDownContainer}>
+          <button className={styles.btnDown}>Download Now</button>
         </div>
       </main>
 
